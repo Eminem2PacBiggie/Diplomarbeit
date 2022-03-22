@@ -29,8 +29,9 @@ app.get('/login', (req, res) =>{
 //Route that handles login logic
 app.post('/login', (req, res) =>{
     var test = req.body.username;
-    console.log(req.body.username)
-    console.log(req.body.password) 
+    var test2 = req.body.password;
+    console.log(test)
+    console.log(test2) 
     res.send("SIUUUU")
 })
 
