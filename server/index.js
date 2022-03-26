@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const port = 3000
 
-
+const { exec } = require("child_process");
 
 // We are using our packages here
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -24,15 +24,73 @@ app.get('/login', (req, res) =>{
     res.sendFile("/Users/luthertran/Desktop/testapp/client/login.html")
 })
 
-
+const fs = require("fs");
 
 //Route that handles login logic
 app.post('/login', (req, res) =>{
     var test = req.body.username;
     var test2 = req.body.password;
-    console.log(test)
-    console.log(test2) 
-    res.send("SIUUUU")
+    fs.writeFile('/Users/luthertran/Desktop/test.java', test, err => {
+        if (err) {
+          console.error(err)
+        }
+        //file written successfully
+      })
+      exec("java " + "/Users/luthertran/Desktop/test.java", (error,stdout,stderr) => {
+        if (error) {
+            console.log(`error: ${error.message}`);
+            res.send(`error: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            return;
+        }
+        // WENN DAS ERGEBNIS EIN STRING IST, GEHT DAS NICHT
+        if (`${stdout}` != `Hello World`) {
+            res.send("Unexpected output \n Expected output: 5\n Output was: "+ `${stdout}`);
+        }
+            else {
+              res.send(`${stdout}` +  "Test passed")
+            }
+    });
+})
+
+//Route that handles login logic
+app.get('/login2', (req, res) =>{
+  res.sendFile("/Users/luthertran/Desktop/testapp/client/login2.html")
+})
+
+const pt = require("fs");
+
+//Route that handles login logic
+app.post('/login2', (req, res) =>{
+  var test = req.body.username;
+  var test2 = req.body.password;
+  fs.writeFile('/Users/luthertran/Desktop/test.python', test, err => {
+      if (err) {
+        console.error(err)
+      }
+      //file written successfully
+    })
+    exec("python " + "/Users/luthertran/Desktop/test.python", (error,stdout,stderr) => {
+      if (error) {
+          console.log(`error: ${error.message}`);
+          res.send(`error: ${error.message}`);
+          return;
+      }
+      if (stderr) {
+          console.log(`stderr: ${stderr}`);
+          return;
+      }
+      // WENN DAS ERGEBNIS EIN STRING IST, GEHT DAS NICHT
+      if (`${stdout}` != 4) {
+          res.send("Unexpected output \n Expected output: 5\n Output was: "+ `${stdout}`);
+      }
+          else {
+            res.send("Output was: "+`${stdout}` +  ", Test passed")
+          }
+  });
 })
 
 //Route that handles signup logic
@@ -45,6 +103,68 @@ app.post('/signup', (req, res) =>{
 console.log(req.body.fullname) 
 console.log(req.body.username)
 console.log(req.body.password) 
+res.send("hallo")
+})
+
+//Route that handles signup logic
+app.get('/java_intro', (req, res) =>{
+  res.sendFile("/Users/luthertran/Desktop/testapp/client/java_intro.html")
+})
+
+//Route that handles signup logic
+app.post('/java_intro', (req, res) =>{
+console.log(req.body.fullname) 
+console.log(req.body.username)
+console.log(req.body.password) 
+res.send("hallo")
+})
+
+//Route that handles signup logic
+app.get('/python_intro', (req, res) =>{
+  res.sendFile("/Users/luthertran/Desktop/testapp/client/python_intro.html")
+})
+
+//Route that handles signup logic
+app.post('/python_intro', (req, res) =>{
+console.log(req.body.fullname) 
+console.log(req.body.username)
+console.log(req.body.password) 
+res.send("hallo")
+})
+
+//Route that handles signup logic
+app.get('/java_aufgaben', (req, res) =>{
+  res.sendFile("/Users/luthertran/Desktop/testapp/client/java_aufgaben.html")
+})
+
+//Route that handles signup logic
+app.post('/java_aufgaben', (req, res) =>{
+console.log(req.body.fullname) 
+console.log(req.body.username)
+console.log(req.body.password) 
+res.send("hallo")
+})
+
+//Route that handles signup logic
+app.get('/python_aufgaben', (req, res) =>{
+  res.sendFile("/Users/luthertran/Desktop/testapp/client/python_aufgaben.html")
+})
+
+//Route that handles signup logic
+app.post('/python_aufgaben', (req, res) =>{
+console.log(req.body.fullname) 
+console.log(req.body.username)
+console.log(req.body.password) 
+res.send("hallo")
+})
+
+//Route that handles signup logic
+app.get('/homepage', (req, res) =>{
+  res.sendFile("/Users/luthertran/Desktop/testapp/client/homepage.html")
+})
+
+//Route that handles signup logic
+app.post('/homepage', (req, res) =>{
 res.send("hallo")
 })
 
