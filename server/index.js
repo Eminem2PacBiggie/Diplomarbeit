@@ -30,13 +30,13 @@ const fs = require("fs");
 app.post('/login', (req, res) =>{
     var test = req.body.username;
     var test2 = req.body.password;
-    fs.writeFile('/Users/luthertran/Desktop/test.java', test, err => {
+    fs.writeFile('/Users/luthertran/Desktop/testapp/test.java', test, err => {
         if (err) {
           console.error(err)
         }
         //file written successfully
       })
-      exec("java " + "/Users/luthertran/Desktop/test.java", (error,stdout,stderr) => {
+      exec("java " + "/Users/luthertran/Desktop/testapp/test.java", (error,stdout,stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             res.send(`error: ${error.message}`);
@@ -67,13 +67,13 @@ const pt = require("fs");
 app.post('/login2', (req, res) =>{
   var test = req.body.username;
   var test2 = req.body.password;
-  fs.writeFile('/Users/luthertran/Desktop/test.python', test, err => {
+  fs.writeFile('/Users/luthertran/Desktop/testapp/test.python', test, err => {
       if (err) {
         console.error(err)
       }
       //file written successfully
     })
-    exec("python " + "/Users/luthertran/Desktop/test.python", (error,stdout,stderr) => {
+    exec("python " + "/Users/luthertran/Desktop/testapp/test.python", (error,stdout,stderr) => {
       if (error) {
           console.log(`error: ${error.message}`);
           res.send(`error: ${error.message}`);
